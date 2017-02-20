@@ -24,24 +24,20 @@ public class CustomPagerAdapter extends PagerAdapter {
         this.articleList = articleList;
     }
 
-    // Returns the number of pages to be displayed in the ViewPager.
     @Override
     public int getCount() {
         return articleList.size();
     }
 
-    // Returns true if a particular object (page) is from a particular page
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
 
-    // This method should create the page for the given position passed to it as an argument.
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        // Inflate the layout for the page
         View itemView = mLayoutInflater.inflate(R.layout.article_view, container, false);
-        // Find and populate data into the page (i.e set the image)
+
         ImageView articleImg = (ImageView) itemView.findViewById(R.id.articleImg);
         TextView articleTitle = (TextView) itemView.findViewById(R.id.articleTitle);
         TextView articleDescription = (TextView) itemView.findViewById(R.id.articleDescription);
@@ -56,7 +52,6 @@ public class CustomPagerAdapter extends PagerAdapter {
         return itemView;
     }
 
-    // Removes the page from the container for the given position.
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);

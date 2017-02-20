@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class ArticleActivity extends AppCompatActivity {
 
+    CustomPagerAdapter mPagerAdapter;
     ActionBar actionBar;
 
     @Override
@@ -19,12 +20,12 @@ public class ArticleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
 
-        final ArrayList<Article> articleList = getIntent().getParcelableArrayListExtra("articles");
+        ArrayList<Article> articleList = getIntent().getParcelableArrayListExtra("articles");
         int startPos = getIntent().getIntExtra("position", 0);
 
-        final ViewPager mPager = (ViewPager) findViewById(R.id.pager);
+        ViewPager mPager = (ViewPager) findViewById(R.id.pager);
 
-        final CustomPagerAdapter mPagerAdapter = new CustomPagerAdapter(this, articleList);
+        mPagerAdapter = new CustomPagerAdapter(this, articleList);
         mPager.setAdapter(mPagerAdapter);
         mPager.setCurrentItem(startPos);
 
@@ -53,14 +54,6 @@ public class ArticleActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        /*if (mPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
-            super.onBackPressed();
-        } else {
-            // Otherwise, select the previous step.
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-        }*/
         super.onBackPressed();
     }
 

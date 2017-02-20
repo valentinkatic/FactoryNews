@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArticleViewHolder> {
 
-    public static class ArticleViewHolder extends RecyclerView.ViewHolder {
+    class ArticleViewHolder extends RecyclerView.ViewHolder {
 
         ImageView itemImage;
         TextView itemText;
@@ -33,9 +33,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArticleViewHolder>
             itemImage = (ImageView) itemView.findViewById(R.id.itemImg);
             itemText = (TextView) itemView.findViewById(R.id.itemText);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.layout);
-
-            /*Typeface face = Typeface.createFromAsset(itemView.getContext().getAssets(), "verdana.ttf");
-            itemText.setTypeface(face);*/
 
             Shader myShader = new LinearGradient(
                     0, 0, 0, 100,
