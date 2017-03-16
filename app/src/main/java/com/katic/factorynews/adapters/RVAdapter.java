@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +34,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArticleViewHolder>
             linearLayout = (LinearLayout) itemView.findViewById(R.id.layout);
 
             Shader myShader = new LinearGradient(
-                    0, 0, 0, 100,
-                    Color.BLACK, Color.WHITE,
+                    0, 0, 0, itemText.getLineHeight()*2,
+                    Color.BLACK, Color.GRAY,
                     Shader.TileMode.CLAMP );
             itemText.getPaint().setShader( myShader );
 
@@ -73,8 +72,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArticleViewHolder>
 
     @Override
     public void onBindViewHolder(ArticleViewHolder holder, int position) {
-        new GetBitmap(articles.get(position).urlToImage).execute(holder.itemImage);
-        holder.itemText.setText(articles.get(position).title);
+        new GetBitmap(articles.get(position).getUrlToImage()).execute(holder.itemImage);
+        holder.itemText.setText(articles.get(position).getTitle());
     }
 
     @Override

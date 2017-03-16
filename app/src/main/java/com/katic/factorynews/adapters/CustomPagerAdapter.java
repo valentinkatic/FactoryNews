@@ -44,9 +44,9 @@ public class CustomPagerAdapter extends PagerAdapter {
 
         Article current = articleList.get(position);
 
-        new GetBitmap(current.urlToImage).execute(articleImg);
-        articleTitle.setText(current.title);
-        articleDescription.setText(current.description);
+        new GetBitmap(current.getUrlToImage()).execute(articleImg);
+        articleTitle.setText(current.getTitle());
+        articleDescription.setText(current.getDescription());
 
         container.addView(itemView);
         return itemView;
@@ -59,6 +59,6 @@ public class CustomPagerAdapter extends PagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return articleList.get(position).title;
+        return articleList.get(position).getTitle();
     }
 }
