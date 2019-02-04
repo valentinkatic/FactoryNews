@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 public class Article implements Parcelable {
 
+    public String author;
     public String title;
     public String description;
     public String urlToImage;
@@ -19,12 +20,14 @@ public class Article implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.author);
         dest.writeString(this.title);
         dest.writeString(this.description);
         dest.writeString(this.urlToImage);
     }
 
     protected Article(Parcel in) {
+        this.author = in.readString();
         this.title = in.readString();
         this.description = in.readString();
         this.urlToImage = in.readString();
