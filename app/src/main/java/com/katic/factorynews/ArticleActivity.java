@@ -1,30 +1,24 @@
 package com.katic.factorynews;
 
 import android.os.Bundle;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.katic.factorynews.models.Article;
+import com.katic.factorynews.view.Toolbar;
 
-import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class ArticleActivity extends AppCompatActivity {
+public class ArticleActivity extends AppCompatActivity implements Toolbar.Listener {
 
     public static final String TAG = ArticleActivity.class.getSimpleName();
     public static final String EXTRA_ARTICLE = "EXTRA_ARTICLE";
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.toolbar_back_button) View mToolbarBackButton;
-    @BindView(R.id.toolbar_title) TextView mToolbarTitle;
     @BindView(R.id.image) ImageView mImage;
     @BindView(R.id.title) TextView mTitle;
     @BindView(R.id.description) TextView mDescription;
@@ -43,11 +37,11 @@ public class ArticleActivity extends AppCompatActivity {
             return;
         }
 
-        mToolbarBackButton.setVisibility(View.VISIBLE);
         setArticleDetails(article);
 
+        mToolbar.setListener(this);
         setSupportActionBar(mToolbar);
-        mToolbarTitle.setText(article.author);
+        mToolbar.setTitle(article.author);
     }
 
     private void setArticleDetails(Article article) {
@@ -64,8 +58,12 @@ public class ArticleActivity extends AppCompatActivity {
         mUnBinder.unbind();
     }
 
-    @OnClick(R.id.toolbar_back_button) void onBackButtonPressed() {
+    //
+    // Toolbar.Listener
+    //
+
+    @Override
+    public void onBackClicked() {
         finish();
     }
-
 }
